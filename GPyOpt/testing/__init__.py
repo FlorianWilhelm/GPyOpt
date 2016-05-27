@@ -1,3 +1,5 @@
+from __future__ import absolute_import, print_function, division
+
 import tests_acquisitions_todo
 import tests_batchbo_todo
 import tests_boloop_todoimport

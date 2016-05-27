@@ -1,7 +1,8 @@
 # Copyright (c) 2012, GPyOpt authors (see AUTHORS.txt).
 # Licensed under the BSD 3-clause license (see LICENSE.txt)
+from __future__ import absolute_import, print_function, division
 
 try:
-    import plots_bo
+    from . import plots_bo
 except:
     pass

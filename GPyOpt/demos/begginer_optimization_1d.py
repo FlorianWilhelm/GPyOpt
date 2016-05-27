@@ -22,37 +22,38 @@ and to the location of the best found location writing.
 BO_demo_1d.x_opt
 
 """
+from __future__ import absolute_import, print_function, division
 
 def begginer_optimization_1d(plots=True):
     import GPyOpt
     from numpy.random import seed
     seed(1234)
-    
+
     # --- Objective function
     objective_true  = GPyOpt.fmodels.experiments1d.forrester()              # true function
     objective_noisy = GPyOpt.fmodels.experiments1d.forrester(sd= .25)       # noisy version
-    bounds = [(0,1)]                                                        # problem constrains 
+    bounds = [(0,1)]                                                        # problem constrains
 
     # --- Problem definition and optimization
-    BO_demo_1d = GPyOpt.methods.BayesianOptimization(f=objective_noisy.f,   # function to optimize       
+    BO_demo_1d = GPyOpt.methods.BayesianOptimization(f=objective_noisy.f,   # function to optimize
                                                     bounds=bounds,          # box-constrains of the problem
                                                     acquisition='EI')       # Selects the Expected improvement
     # Run the optimization for 15 iterations
-    max_iter = 15                                                           
+    max_iter = 15
 
-    print '-----'
-    print '----- Running demo. It may take a few seconds.'
-    print '-----'
-    
-    # Run the optimization                                                  
+    print('-----')
+    print('----- Running demo. It may take a few seconds.')
+    print('-----')
+
+    # Run the optimization
     BO_demo_1d.run_optimization(max_iter,                                   # evaluation budget
                                     eps=10e-6)                              # stop criterion
-                            
+
 
     # --- Plots
     if plots:
         objective_true.plot()
         BO_demo_1d.plot_acquisition()
         BO_demo_1d.plot_convergence()
-        
-    return BO_demo_1d 
+
+    return BO_demo_1d
